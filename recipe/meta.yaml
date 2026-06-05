@@ -1,4 +1,4 @@
-{% set version = "0.5.4" %}
+{% set version = "0.5.5" %}
 {% set name = "mobie_utils" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/mobie/mobie-utils-python/archive/{{ version }}.tar.gz
-  sha256: cc5a6e2746eb5f31347c4ebc9aab6b385ac3f0a2e6deb3cd7782b145407d5523
+  sha256: d12d42b5890838bb189b2855d3aa0278d0a15cbe2890981b1a922c6c77e1ccf1
 
 build:
   number: 0
@@ -27,12 +27,13 @@ build:
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
     - setuptools
   run:
-    - python >=3.6
-    - cluster_tools >=0.4.4
+    - python >={{ python_min }}
+    - cluster_tools >=0.5.2
+    - python-elf <0.9.0
     - jsonschema
     - pandas
     - requests
@@ -40,6 +41,8 @@ requirements:
     - threadpoolctl >=0.3.3
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - mobie
     - mobie.metadata
