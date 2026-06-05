@@ -41,6 +41,8 @@ requirements:
     - threadpoolctl >=0.3.3
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - mobie
     - mobie.metadata
