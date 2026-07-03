@@ -1,4 +1,4 @@
-{% set version = "0.5.5" %}
+{% set version = "0.6.0" %}
 {% set name = "mobie_utils" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/mobie/mobie-utils-python/archive/{{ version }}.tar.gz
-  sha256: d12d42b5890838bb189b2855d3aa0278d0a15cbe2890981b1a922c6c77e1ccf1
+  sha256: 4da7ff67eb6bae94a9f65bafd788070eba9fcad36ecb3ab165d7800768417b0f
 
 build:
   number: 0
@@ -31,14 +31,17 @@ requirements:
     - pip
     - setuptools
   run:
+    - bioimage-py
     - python >={{ python_min }}
-    - cluster_tools >=0.5.2
-    - python-elf <0.9.0
+    - python-elf >=0.9.0
     - jsonschema
     - pandas
     - requests
     - s3fs
     - threadpoolctl >=0.3.3
+    - tifffile
+    - z5py >=3.0.0
+    - zarr >=3.0.0
 
 test:
   requires:
@@ -56,13 +59,10 @@ test:
     - mobie.migrate_project -h
     - mobie.validate_dataset -h
     - mobie.validate_project -h
-  # the unit-tests fail on conda forge, I think because most of the jobs are submitted via luigi,
-  # which causes trouble. But the tests pass for all OS iin the CI:
-  # https://github.com/mobie/mobie-utils-python/blob/master/.github/workflows/build_and_test.yaml
-  # source_files:
-  #   - test/**/*.py
-  # commands:
-  #   - python -m unittest discover -s test -v
+  source_files:
+    - test/**/*.py
+  commands:
+    - python -m unittest discover -s test -v
 
 about:
   license: MIT
