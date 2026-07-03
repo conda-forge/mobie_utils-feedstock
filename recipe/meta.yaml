@@ -49,6 +49,8 @@ test:
   imports:
     - mobie
     - mobie.metadata
+  source_files:
+    - test/**/*.py
   commands:
     - mobie.add_image -h
     - mobie.add_registered_source -h
@@ -59,9 +61,6 @@ test:
     - mobie.migrate_project -h
     - mobie.validate_dataset -h
     - mobie.validate_project -h
-  source_files:
-    - test/**/*.py
-  commands:
     - python -m unittest discover -s test -v
 
 about:
