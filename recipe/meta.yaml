@@ -32,6 +32,7 @@ requirements:
     - setuptools
   run:
     - bioimage-py
+    - pybdv
     - python >={{ python_min }}
     - python-elf >=0.9.0
     - jsonschema
